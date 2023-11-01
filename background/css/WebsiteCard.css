@@ -1,0 +1,87 @@
+.WebsiteCard{
+    --WebsiteCard-basic-wh: 50px;
+    width: calc(var(--WebsiteCard-basic-wh)*2.5);
+    height: calc(var(--WebsiteCard-basic-wh));
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.WebsiteCard button{
+    position: absolute;
+    top: 5px;
+    left: -50px;
+    width: calc(var(--WebsiteCard-basic-wh)*1.2);
+    height: calc(var(--WebsiteCard-basic-wh)*0.6);
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+    border-radius: 8px;
+}
+.WebsiteCard button::before{
+    content: '登录';
+    transition: all 0.3s 0.1s;
+    position: relative;
+    right: 0px;
+}
+.WebsiteCard button:hover:before{
+    right: 5px;
+}
+.WebsiteCard button::after{
+    content: '\00bb';
+    transition: all 0.6s;
+    font-size: larger;
+    position: absolute;
+    left: 45px;
+    opacity: 0;
+}
+.WebsiteCard button:hover::after{
+    left: 40px;
+    opacity: 1;
+}
+.WebsiteCard-avatar{
+    width: calc(var(--WebsiteCard-basic-wh));
+    height: calc(var(--WebsiteCard-basic-wh));
+    clip-path: circle(38%);
+    transform: translateY(-5px);
+    background-color: #768079;
+}
+.WebsiteCard-status{
+    width: calc(var(--WebsiteCard-basic-wh));
+    height: calc(var(--WebsiteCard-basic-wh)*0.3);
+    position: absolute;
+    right: 33px;
+    bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.WebsiteCard-status div{
+    width: calc(var(--WebsiteCard-basic-wh)*0.3);
+    height: calc(var(--WebsiteCard-basic-wh)*0.3);
+    clip-path: circle(50%);
+    margin: 0px 3px;
+}
+.WebsiteCard-status span{
+    line-height: calc(var(--WebsiteCard-basic-wh)*0.3);
+    font-size: 0.5em;
+    transform: translateY(-1.5px);
+}
+.WebsiteCard-status[online="true"] div{
+    background-color: #00ff64;
+}
+.WebsiteCard-status[online="false"] div{
+    background-color: #768079;
+}
+.WebsiteCard-status[online="true"] span::after{
+    content: "在线";
+}
+.WebsiteCard-status[online="false"] span::after{
+    content: "离线";
+}
+.WebsiteCard-title{
+    height: calc(var(--WebsiteCard-basic-wh));
+    line-height: calc(var(--WebsiteCard-basic-wh));
+    transform: translateY(-10px);
+    cursor: default;
+}

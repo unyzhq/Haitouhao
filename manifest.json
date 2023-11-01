@@ -1,0 +1,29 @@
+{
+    "name":"Job Search Aggregator",
+    "version":"0.0.0.1",
+    "manifest_version":3,
+    "description":"An extension to merge job search website.",
+    "icons":{
+        "128":"icons/oct.png"
+    },
+    "action":{
+        "default_popup":"popup/popup.html"
+    },
+    "content_scripts":[
+        {
+            "matches":["https://wow.liepin.com/*","https://www.zhipin.com/*","https://www.lagou.com/*","https://mkt.51job.com/*","https://landing.zhaopin.com/*","file:///*"],
+            "js":["content-scripts/content.js"],
+            "run_at":"document_start"
+        }
+    ],
+    "web_accessible_resources":[
+        {
+            "matches":["http://*/*","https://*/*"],
+            "resources":["images/*.jpeg"]
+        }
+    ],
+    "background":{
+        "page":"background/background.html",
+        "scripts":["background/js/background.js"]
+    }
+}
