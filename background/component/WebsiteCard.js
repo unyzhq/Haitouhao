@@ -22,3 +22,4 @@ class WebsiteCard extends HTMLDivElement{
     }
     
 }
+export {WebsiteCard}

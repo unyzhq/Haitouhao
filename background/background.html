@@ -5,17 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="js/background.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/background.css">
     <link type="text/css" rel="stylesheet" href="css/WebsiteCard.css">
     <style type="text/css">
         body{
             background-color: bisque;
             inset: 0;
             font-family: 'Source Han Sans CN VF ExtraLight';
+            display: flex;
+            justify-content: center;
         }
-        
     </style>
 </head>
 <body>
-    
+    <div id="SearchBar">
+        <div id="SearchBar-job">
+            <span>职位类型</span>
+            <div></div>
+        </div>
+        <input placeholder="搜索职位、公司"/>
+        <button>搜索</button>
+    </div>
 </body>
 </html>

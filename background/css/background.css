@@ -1,0 +1,45 @@
+#SearchBar{
+    --SearchBar-color:#FF9900;
+    width: 500px;
+    height: 50px;
+    border-radius: 12px;
+    border: 2px solid var(--SearchBar-color);
+    background-color: var(--SearchBar-color);
+}
+#SearchBar input{
+    flex-grow: 1;
+    height: 96%;
+    background-color: white;
+    border: none;
+    outline: none;
+    font-size: large;
+    border-radius: 0 12px 12px 0;
+}
+#SearchBar button{
+    height: 100%;
+    color: white;
+    padding: 15px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    font-weight: 550;
+    cursor: pointer;
+}
+#SearchBar,#SearchBar-job{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#SearchBar-job{
+    width: 85px;
+    height: 100%;
+    padding: 0 10px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 12px 0 0 12px;
+}
+#SearchBar-job div{
+    width: 11px;
+    height: 6px;
+    background-color: grey;
+    clip-path: polygon(50% 100%,0 0,100% 0);
+}
