@@ -1,0 +1,122 @@
+#chatbox{
+    height: 40vh;
+    min-height: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 13px 0;
+}
+#chatbox > div:last-child{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+#chatbox-menu{
+    height: 100%;
+    flex: 0 0 200px;
+}
+#chatbox-menu::-webkit-scrollbar{
+    background-color: rgba(255,255,255,0);
+}
+#chatbox-menu::-webkit-scrollbar-thumb{
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 25px;
+}
+#chatbox-menu > div:first-child{
+    position: relative;
+}
+#chatbox-menu > div:first-child input{
+    background-color: rgba(0,0,0,0);
+    border: none;
+    height: 30px;
+    font-size: larger;
+    outline: none;
+}
+#chatbox-menu > div:first-child span{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: black;
+    transform-origin: bottom right;
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+}
+#chatbox-menu > div:first-child input:focus  ~ span{
+    transform-origin: bottom left;
+    transform: scaleX(1);
+}
+#chatbox-window{
+    height: 360px;
+    width: 100%;
+    overflow-y: scroll;
+}
+#chatbox-window::-webkit-scrollbar{
+    background-color: rgba(255,255,255,0);
+}
+#chatbox-window::-webkit-scrollbar-thumb{
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 25px;
+}
+#chatbox-input{
+    width: 100%;
+    flex-grow: 1;
+    padding-right: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+#chatbox-input input{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    outline: none;
+    font-size: large;
+}
+#chatbox-input span{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    transition: transform 0.5s ease;
+    transform-origin: right top;
+    transform: scaleX(0);
+    background-color: black;
+}
+#chatbox-input input:focus ~ span{
+    transform-origin: left top;
+    transform: scaleX(1);
+}
+.message-left{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    max-width: 400px;
+}
+.message-right{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    max-width: 400px;
+}
+.message-left span,.message-right span{
+    display: inline-block;
+    margin: 6px 0;
+    word-break: break-all;
+    background-color: white;
+    border-radius: 0.8em;
+}
+.message-left span{
+    border-top-left-radius: 0;
+    padding: 0 5px 0 2px;
+}
+.message-right span{
+    border-top-right-radius: 0;
+    padding: 0 2px 0 5px;
+}

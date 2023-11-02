@@ -4,27 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/background.js"></script>
-    <link type="text/css" rel="stylesheet" href="css/background.css">
+    <script src="js/background.js" type="module"></script>
+    <link type="text/css" rel="stylesheet" href="css/SearchBar.css">
     <link type="text/css" rel="stylesheet" href="css/WebsiteCard.css">
+    <link type="text/css" rel="stylesheet" href="css/JobCard.css">
+    <link type="text/css" rel="stylesheet" href="css/Detail.css">
+    <link type="text/css" rel="stylesheet" href="css/HrCard.css">
+    <link type="text/css" rel="stylesheet" href="css/ChatBox.css">
     <style type="text/css">
         body{
-            background-color: bisque;
+            background-image: url("assets/Blue\ Archive\ -\ Our\ Stories.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             inset: 0;
-            font-family: 'Source Han Sans CN VF ExtraLight';
+            font-family: 'Source Han Sans CN VF Light';
             display: flex;
             justify-content: center;
         }
+        #content{
+            width: auto;
+            min-height: 100vh;
+            padding: 15px 30px;
+            border-radius: 1em;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            background-color: rgba(255,255,255,0.4);
+            backdrop-filter: blur(5px);
+        }
+        
+        
+        
     </style>
 </head>
 <body>
-    <div id="SearchBar">
-        <div id="SearchBar-job">
-            <span>职位类型</span>
-            <div></div>
+    <div id="content">
+        <div id="SearchBar">
+            <div id="SearchBar-job">
+                <span>职位类型</span>
+                <div></div>
+            </div>
+            <input placeholder="搜索职位、公司"/>
+            <button>搜索</button>
         </div>
-        <input placeholder="搜索职位、公司"/>
-        <button>搜索</button>
+        <div class="JobCard">
+            <div class="JobCard-hover"></div>
+            <div class="JobCard-info">
+                <div>
+                    <span>Android 工程师 深圳</span>
+                    <span>20-25k</span>
+                </div>
+                <div>
+                    <span>3-5年</span>
+                    <span>本科</span>
+                    <span>相机开发</span>
+                    <span>Android开发经验</span>
+                </div>
+            </div>
+            <div class="JobCard-company">
+                <div>
+                    <div class="JobCard-avatar"></div>
+                    <span class="JobCard-name">秦网科技</span>
+                </div>
+                <div>
+                    <span class="JobCard-industry">互联网</span>
+                    <span>I</span>
+                    <span class="JobCard-financing">不需要融资</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="detail-empty-block">
+        <div id="website">
+
+        </div>
+        <div>
+            <div id="detail">
+                <div id="detail-top">
+                    <div>
+                        <div>
+                            <span id="detail-title">Android 工程师 深圳</span>
+                            <span id="detail-salary">20-25K</span>
+                        </div>
+                        <div id="detail-tag">
+                            <span>深圳</span>
+                            <span>3-5年</span>
+                            <span>本科</span>
+                        </div>
+                    </div>
+                    <div>
+                        <button>感兴趣</button>
+                        <button>立即沟通</button>
+                    </div>
+                </div>
+                <div id="detail-description">
+                    <h4>职位描述：</h4>
+                    <div id="detail-description-tag">
+                        <span>相机开发</span>
+                        <span>Android开发经验</span>
+                        <span>Java</span>
+                        <span>音视频编解码</span>
+                        <span>数据结构/算法能力</span>
+                        <span>Android客户端产品研发</span>
+                        <span>视频剪辑</span>
+                        <span>Android</span>
+                        <span>多线程编程能力</span>
+                        <span>移动开发</span>
+                        <span>计算机/软件工程相关专业</span>
+                    </div>
+                    <h5>【岗位职责】</h5>
+                    <div>
+                        <ol>
+                            <li>需求评审并根据需求完成相应功能模块开发。</li>
+                            <li>完成屏幕适配、性能调优、内存优化、网络调优、系统适配等。</li>
+                            <li>根据产品要求完成App相应的UI界面、动画效果设计和实现。</li>
+                            <li>缺陷修复、逻辑结构优化。</li>
+                            <li>工程代码要求有一定可调试性、可阅读性、可拓展性。</li>
+                        </ol>
+                    </div>
+                    <h5>【任职要求】</h5>
+                    <div>
+                        <ol>
+                            <li>计算机软件相关专业，3年以上Android开发经验，逻辑思维强，有良好的编程习惯，学习能力强，能够对技术问题进行深入挖掘。</li>
+                            <li>对Android技术深入研究有较高热情和兴趣的优先录用。</li>
+                            <li>有独立完成Android App开发的项目经验，此为硬性条件，有相机、图片、视频编辑产品开发经验者优先，有OpenGL编程优先。</li>
+                            <li>熟练使用各种调试、性能分析工具，能对产品性能进行深入分析、优化。</li>
+                            <li>有较强的文档阅读和书写能力，能熟练梳理业务SDK和整合第三方SDK。</li>
+                            <li>具有良好的学习、抗压能力，要有高度的责任心和团队合作意识，有解决分析问题的能力以及良好的沟通能力。</li>
+                            <li>弹性开放式工作模式，每天工作8小时，双休，非外包。</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div id="chatbox">
+                <div id="chatbox-menu">
+                    <div>
+                        <input placeholder="搜索">
+                        <span></span>
+                    </div>
+                    <div id="Hr">
+                        <div class="HrCard">
+                            <div class="HrCard-hover"></div>
+                            <div class="HrCard-avatar"></div>
+                            <div class="HrCard-info">
+                                <div>
+                                    <span class="HrCard-name">吴先生</span>
+                                    <span class="HrCard-company">叮当科技</span>
+                                </div>
+                                <span class="HrCard-lastmessage">
+                                    你好
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="chatbox-window">
+                        <div class="message-left"><span>你好，认真看了下你的简历，觉得和我们岗位的招聘需求高度符合，请问你现在是在找新的工作机会是吗？</span></div>
+                        <div class="message-right"><span>请问什么岗位，前端吗？</span></div>
+                        <div class="message-right"><span>等等，外企德科？</span></div>
+                        <div class="message-right"><span>技能冷却中，还需等待125天。</span></div>
+                        <div class="message-left"><span>好的好的。</span></div>
+                        <div class="message-left"><span>[捂脸]</span></div>
+                    </div>
+                    <div id="chatbox-input">
+                        <input placeholder="输入">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

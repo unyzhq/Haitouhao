@@ -1,0 +1,76 @@
+#detail-empty-block{
+    width: 600px;
+    position: relative;
+}
+#detail-empty-block > div:last-child{
+    width: 600px;
+    height: auto;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    padding: 15px 5px 15px 30px;
+    background-color: rgba(255,255,255,0.4);
+    backdrop-filter: blur(4px);
+    position: fixed;
+}
+#detail{
+    overflow-y: scroll;
+    max-height: 53.15vh;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+#detail::-webkit-scrollbar{
+    background-color: rgba(255,255,255,0);
+}
+#detail::-webkit-scrollbar-thumb{
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 25px;
+}
+#detail h4{
+    margin: 15px 0 4px;
+}
+#detail h5{
+    margin: 5px 0 -6px 0;
+}
+#detail li{
+    font-size: 0.9em;
+}
+#detail-top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#detail-top button{
+    outline: none;
+    background-color: rgba(0,0,0,0);
+    height: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+#detail-title,#detail-salary{
+    font-size: larger;
+    font-weight: bolder;
+}
+#detail-tag{
+    margin-top: 8px;
+}
+#detail-tag span{
+    font-size: small;
+    margin: 0 2px;
+    padding: 0 4px;
+    background-color: rgb(240, 240, 240);
+    border-radius: 6px;
+}
+#detail-description-tag span{
+    display: inline-block;
+    font-size: small;
+    color: rgb(111, 111, 111);
+    background-color: rgb(220, 220, 220);
+    padding: 1px 3px;
+    margin: 4px 0;
+    border-radius: 5px;
+    white-space: nowrap;
+}

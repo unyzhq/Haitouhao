@@ -1,3 +1,13 @@
+#website{
+    width: auto;
+    height: auto;
+    position: fixed;
+    transform: translateX(680px);
+    padding: 8px 15px 0 0;
+    border-radius: 12px;
+    background-color: rgba(255,255,255,0.4);
+    backdrop-filter: blur(5px);
+}
 .WebsiteCard{
     --WebsiteCard-basic-wh: 50px;
     width: calc(var(--WebsiteCard-basic-wh)*2.5);
