@@ -1,0 +1,59 @@
+通信：
+content-script(内容脚本)
+内容脚本不能使用的chrome API：
+1.  chrome.tabs
+    这意味着内容脚本无法获取并筛选标签页(chrome.tabs.query({},()=>{})或者链式调用形式)，
+    因此也无法获取标签页ID,
+    从而对指定标签页发送消息(chrome.tabs.sendMessage(id,message,callback))。
+内容脚本能够使用的chrome API:
+1.  chrome.runtime
+    可以使用chrome.runtime.sendMessage(extensionId,message,options)来向拓展发送消息。
+    extensionId: 接收消息的拓展的ID  manifest 中 browser_specific_settings 所设置的值。
+    如果只给一个参数，
+    则默认向自己的拓展发送消息。
+    如果给两个参数，
+    根据第二个参数是否为有效的options对象来决定，
+    识别为 (message,options) 或 (extensionId,message)。
+
+接收消息：
+当有标签页通过某种方式发送消息时，
+其他标签页或目标标签页会触发runtime.onMessage中的事件处理程序，
+可以使用 浏览器.runtime.onMessage.addListener 来添加处理程序，
+处理程序接收三个参数 (发送过来的消息,发送方的MessageSender对象,发送方传递的回调函数)，
+注意，
+接收方执行回调函数意味着在发送方执行该函数，
+而非接收方，
+可以借此传递数据(不能传递元素对象)。
+
+内容脚本的模块导入导出：
+内容脚本在manifest中导入后，
+默认为在同意环境下，
+因此不需要导入导出即可互相调用对方的函数、对象、方法等等。
+
+content-script注入失败的原因(Claude)：
+
+1. 网站实现了 CSP (Content Security Policy) 策略,限制了脚本的加载。
+
+可以在 manifest 中设置 `"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"` 来覆盖 CSP。
+
+2. 网站使用了 iframe 沙箱模式,限制了第三方脚本。
+
+可以通过 `<iframe sandbox="allow-scripts allow-same-origin">` 启用沙箱的脚本执行。
+
+3. 网站使用了 X-Frame-Options 禁止了 iframe 加载。
+
+可以设置 `"all_frames": true` 在顶层文档注入脚本。
+
+4. 由于 Chrome 的 bug,content script 没有正确注入。
+
+可以通过页面重载或重新安装插件解决。
+
+5. 网站使用了过于限制的 CORS 策略,阻止了插件请求。 
+
+可以设置 `"content_security_policy": "connect-src http://*/;"` 进行覆盖。
+
+6. 网站采取了其他安全防护措施,如阻止内联脚本等。
+
+所以内容脚本注入失败还可能与站点的安全策略有关,需要针对性地调整 manifest 来进行覆盖。
+
+也可以通过后台脚本触发重新加载来重试注入。

@@ -17,9 +17,28 @@ class WebsiteCard extends HTMLDivElement{
         this.wcavatar = this.getElementsByClassName("WebsiteCard-avatar")[0]
         this.wcstatus = this.getElementsByClassName("WebsiteCard-status")[0]
         this.wctitle = this.getElementsByClassName("WebsiteCard-title")[0]
+        this.state = {
+            src:'',
+            online: false
+        }
     }
     clear(){
         this.wctitle.innerHTML = ''
+    }
+    getState(){
+        return this.state
+    }
+    setState(state){
+        if(state.src !== undefined){
+            this.wcavatar.style.setProperty('background-image',`url(${state.src})`)
+            this.state.src = state.src
+            state.online = true
+        }
+        if(state.online !== undefined){
+            this.wcstatus.setAttribute('online',state.online)
+            this.wcbutton.style.setProperty('display',state.online? 'none' : 'auto')
+            this.state.online = state.online
+        }
     }
 }
 //define("元素名",元素类,{extends:"继承的元素(小写)"})

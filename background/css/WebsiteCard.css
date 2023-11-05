@@ -55,6 +55,8 @@
     clip-path: circle(38%);
     transform: translateY(-5px);
     background-color: #768079;
+    background-size: 80%;
+    background-position: 50% 50%;
 }
 .WebsiteCard-status{
     width: calc(var(--WebsiteCard-basic-wh));

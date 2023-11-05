@@ -11,8 +11,8 @@
     },
     "content_scripts":[
         {
-            "matches":["https://wow.liepin.com/*","https://www.zhipin.com/*","https://www.lagou.com/*","https://mkt.51job.com/*","https://landing.zhaopin.com/*","file:///*"],
-            "js":["content-scripts/content.js"],
+            "matches":["https://www.liepin.com/*","https://c.liepin.com/*","https://www.zhipin.com/*","https://www.lagou.com/*","https://mkt.51job.com/*","https://we.51job.com/*","https://landing.zhaopin.com/*","https://xiaoyuan.zhaopin.com/*","file:///*"],
+            "js":["content-scripts/content.js","content-scripts/util.js","content-scripts/zhipin.js","content-scripts/liepin.js","content-scripts/lagou.js","content-scripts/51job.js","content-scripts/zhilian.js"],
             "run_at":"document_start"
         }
     ],
@@ -21,9 +21,5 @@
             "matches":["http://*/*","https://*/*"],
             "resources":["images/*.jpeg"]
         }
-    ],
-    "background":{
-        "page":"background/background.html",
-        "scripts":["background/js/background.js"]
-    }
+    ]
 }
