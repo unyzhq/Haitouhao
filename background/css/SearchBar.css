@@ -87,12 +87,19 @@
     align-items: center;
     margin: 5px 0px;
     transition: all 0.5s;
+    cursor: pointer;
 }
-.SearchBar-option:hover{
+.SearchBar-option:hover,.SearchBar-option[hovered]{
     background-color: rgba(0, 0, 0, 0.1);
 }
-.SearchBar-option:hover > div:nth-child(2){
+.SearchBar-option:hover > div:nth-child(2),.SearchBar-option[hovered] > div:nth-child(2){
     background-color: #FF9900;
+}
+.SearchBar-option > span{
+    transition: color 0.3s;
+}
+.SearchBar-option:hover > span,.SearchBar-option[hovered] > span{
+    color: #FF9900;
 }
 .SearchBar-option > div:nth-child(2){
     width: 8px;
@@ -109,7 +116,7 @@
     height: 300px;
     display: none;
     flex-direction: column;
-    background-color: rgba(255,255,255,0.8);
+    background-color: aliceblue;
     border-radius: 0 0.5em 0.5em 0;
     overflow-y: scroll;
     padding-right: 5px;
@@ -122,9 +129,19 @@
     display: flex;
     flex-wrap: wrap;
 }
-.SearchBar-expand > div a{
-    font-size: medium;
-    margin: 0 3px;
+.SearchBar-expand span{
+    margin: 0 9px;
+    font-size: 14px;
+    color: grey;
+}
+.SearchBar-expand a{
+    font-size: 13px;
+    margin: 2px 8px;
+    transition: color 0.3s;
+}
+.SearchBar-expand a:hover{
+    color: #FF9900;
+    cursor: pointer;
 }
 #SearchBar-content::-webkit-scrollbar{
     width: 5px;
