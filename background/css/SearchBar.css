@@ -38,9 +38,107 @@
     background-color: white;
     border-radius: 12px 0 0 12px;
 }
-#SearchBar-job div{
+#SearchBar-job > div:nth-child(2){
     width: 11px;
     height: 6px;
     background-color: grey;
     clip-path: polygon(50% 100%,0 0,100% 0);
+}
+#SearchBar-job > span,#SearchBar-job > div:nth-child(2){
+    transition: all 0.2s;
+}
+#SearchBar-job[clicked] > span,#SearchBar-job:hover > span{
+    color: #FF9900;
+}
+#SearchBar-job[clicked] > div:nth-child(2),#SearchBar-job:hover > div:nth-child(2){
+    background-color: #FF9900;
+}
+#SearchBar-job[clicked] #SearchBar-options > div{
+    display: flex;
+}
+#SearchBar-options{
+    position:relative;
+    cursor: default;
+}
+#SearchBar-options > div{
+    position:absolute;
+    left: -96px;
+    top: 28px;
+    z-index: 1;
+    width: 490px;
+    height: 300px;
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+#SearchBar-content{
+    width: 160px;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: aliceblue;
+    border-radius: 0.5em 0 0 0.5em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    padding-left: 8px;
+}
+.SearchBar-option{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0px;
+    transition: all 0.5s;
+}
+.SearchBar-option:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.SearchBar-option:hover > div:nth-child(2){
+    background-color: #FF9900;
+}
+.SearchBar-option > div:nth-child(2){
+    width: 8px;
+    height: 8px;
+    margin: 0 8px;
+    background-color: grey;
+    clip-path: polygon(65% 55%,0 0,0 100%);
+}
+.SearchBar-option > div:nth-child(3){
+    position: absolute;
+    left: 168px;
+    top: 0px;
+    width: 362px;
+    height: 300px;
+    display: none;
+    flex-direction: column;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 0 0.5em 0.5em 0;
+    overflow-y: scroll;
+    padding-right: 5px;
+}
+.SearchBar-option[hovered] > div:nth-child(3){
+    z-index: 1;
+    display: flex;
+}
+.SearchBar-expand > div{
+    display: flex;
+    flex-wrap: wrap;
+}
+.SearchBar-expand > div a{
+    font-size: medium;
+    margin: 0 3px;
+}
+#SearchBar-content::-webkit-scrollbar{
+    width: 5px;
+    background-color: rgba(0, 0, 0, 0);
+}
+#SearchBar-content::-webkit-scrollbar-thumb{
+    background-color: grey;
+    border-radius: 25px;
+}
+.SearchBar-option > div:nth-child(3)::-webkit-scrollbar{
+    width: 5px;
+    background-color: rgba(0, 0, 0, 0);
+}
+.SearchBar-option > div:nth-child(3)::-webkit-scrollbar-thumb{
+    background-color: rgb(160, 160, 160);
+    border-radius: 25px;
 }

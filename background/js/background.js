@@ -1,8 +1,31 @@
 import {createWebsiteCard} from "../component/WebsiteCard.js"
 import "../component/JobCard.js"
 import { session } from "./ListenerHandlers/storage.js"
-import { restore } from "./ListenerHandlers/website.js"
+//import { restore } from "./ListenerHandlers/website.js"
 window.addEventListener('load',()=>{
+    document.addEventListener('click',function(event){
+        let job = document.getElementById('SearchBar-job')
+        if(event.target === job || job.contains(event.target)){
+            if(job.hasAttribute('clicked') && (event.target === job || event.target === job.firstElementChild || event.target === job.firstElementChild.nextSibling)){
+                job.removeAttribute('clicked') 
+            }else{
+                job.setAttribute('clicked','')
+            }
+        }else{
+            job.removeAttribute('clicked') 
+        }
+    })
+    document.getElementById('SearchBar-content').addEventListener('mouseover',function(event){
+        for(let node of document.getElementsByClassName('SearchBar-option')){
+            if((node.contains(event.target) || node === event.target) && !node.hasAttribute('hovered')){
+                document.querySelector('.SearchBar-option[hovered]')?.removeAttribute('hovered')
+                node.setAttribute('hovered','')
+            }else if((node.contains(event.target) || node === event.target) && node.hasAttribute('hovered')){
+                break
+            }
+        }
+    })
+
     let jc = document.createElement("div",{is:"job-card"})
     let content = document.getElementById('content')
     for(let i = 0;i < 20;i++){
