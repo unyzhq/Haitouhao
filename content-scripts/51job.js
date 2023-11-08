@@ -1,9 +1,9 @@
 if(window.name === '51job'){
     window.addEventListener('load',function(){
         let func = function(){
-            let el = document.querySelector('div.fl.clearfix')
+            let el = document.querySelector('a.uname.e_icon.at')
             if(el !== null){
-                let src = el.getElementsByTagName('img')[0].src
+                let src = document.querySelector('link[rel="icon"]').href
                 let message = {
                     type: 'website',
                     from: window.name,
@@ -21,5 +21,21 @@ if(window.name === '51job'){
         }
         setTimeout(func,1000)
     })
-    
+    chrome.runtime.onMessage.addListener((message,sender,callback)=>{
+        if(message.from !== 'home'){
+            return
+        }
+        if(message.type = 'search'){
+            let input = document.querySelector('input#keywordInput')
+
+            input.value = message.data.search
+            input.dispatchEvent(new Event('input',{bubbles:true,cancelable:true}))
+
+            let button = document.querySelector('button#search_btn')
+            if(button !== null){
+                button.click()
+            }
+            callback([input.value,'51job'])
+        }
+    })
 }

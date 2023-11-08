@@ -1,7 +1,5 @@
-let img = {src:''}
-let signout = true
-
-let types = {img,signout}
+let search = ''
+let types = {search}
 //简易的类型检查函数。
 function Data(type,data){
     let t
@@ -30,20 +28,4 @@ function Data(type,data){
     
     return {[type]:data}
 }
-
-function getButton(name){//根据字符串，获取一个绑定了点击事件的块元素。
-    let walker = document.createTreeWalker(document.body,NodeFilter.SHOW_ELEMENT,(node)=>{
-        let eventListeners = window.getEventListeners(node)
-        if(eventListeners.click === undefined || eventListeners.click.useCapture){
-            return NodeFilter.FILTER_SKIP
-        }
-        return NodeFilter.FILTER_ACCEPT
-    })
-    for(let node = walker.nextNode();node !== null;node = walker.nextNode()){
-        //8203为零宽字符，小小ZH，可笑可笑。
-        if(new RegExp(`[\\s${String.fromCharCode(8203)}]*${name}(?![\\s${String.fromCharCode(8203)}]*\\S)`,"y").test(node.innerText)){
-            return node
-        }
-    }
-    return null
-}
+export {Data}

@@ -34,9 +34,9 @@
     width: 85px;
     height: 100%;
     padding: 0 10px;
-    cursor: pointer;
     background-color: white;
     border-radius: 12px 0 0 12px;
+    cursor: pointer;
 }
 #SearchBar-job > div:nth-child(2){
     width: 11px;
@@ -109,10 +109,11 @@
     clip-path: polygon(65% 55%,0 0,0 100%);
 }
 .SearchBar-option > div:nth-child(3){
+    cursor: default;
     position: absolute;
-    left: 168px;
+    left: 172px;
     top: 0px;
-    width: 362px;
+    width: 358px;
     height: 300px;
     display: none;
     flex-direction: column;
@@ -120,6 +121,7 @@
     border-radius: 0 0.5em 0.5em 0;
     overflow-y: scroll;
     padding-right: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .SearchBar-option[hovered] > div:nth-child(3){
     z-index: 1;
@@ -138,10 +140,10 @@
     font-size: 13px;
     margin: 2px 8px;
     transition: color 0.3s;
+    cursor: pointer;
 }
 .SearchBar-expand a:hover{
     color: #FF9900;
-    cursor: pointer;
 }
 #SearchBar-content::-webkit-scrollbar{
     width: 5px;

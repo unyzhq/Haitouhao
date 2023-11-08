@@ -21,5 +21,8 @@
             "matches":["http://*/*","https://*/*"],
             "resources":["images/*.jpeg"]
         }
+    ],
+    "permissions":[
+        "tabs"
     ]
 }

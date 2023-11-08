@@ -21,5 +21,22 @@ if(window.name === 'zhaopin'){
         }
         setTimeout(func,1000)
     })
-    
+    chrome.runtime.onMessage.addListener((message,sender,callback)=>{
+        if(message.from !== 'home'){
+            return
+        }
+        if(message.type = 'search'){
+            let input = document.querySelector('input#search_input_one')
+
+            input.value = message.data.search
+            input.dispatchEvent(new Event('input',{bubbles:true,cancelable:true}))
+
+            let button = document.querySelector('span.search_btn')
+            if(button !== null){
+                button.click()
+            }
+            //智联招聘点击首页搜素按钮不会重定向，通过callback()传递信息即可。
+            callback([input.value,'zhilian'])
+        }
+    })
 }

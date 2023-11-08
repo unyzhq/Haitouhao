@@ -22,4 +22,21 @@ if(window.name === 'liepin'){
         }
         setTimeout(func,1000)
     })
+    chrome.runtime.onMessage.addListener((message,sender,callback)=>{
+        if(message.from !== 'home'){
+            return
+        }
+        if(message.type = 'search'){
+            let input = document.querySelector('input.jsx-4146333934')
+
+            input.value = message.data.search
+            input.dispatchEvent(new Event('input',{bubbles:true,cancelable:true}))
+
+            let button = document.querySelector('span.jsx-4146333934.search-btn')
+            if(button !== null){//如果是首页，则点击按钮，招聘信息通过onload中的逻辑获取。
+                button.click()
+            }
+            callback([input.value,'liepin'])
+        }
+    })
 }
