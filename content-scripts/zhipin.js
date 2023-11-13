@@ -1,6 +1,6 @@
 if(window.name === 'zhipin'){
     window.addEventListener('load',function(){
-        let func = function(){
+        let login = function(){
             let el = document.querySelector('li.nav-figure')
             if(el !== null){
                 let src = el.getElementsByTagName('img')[0].src
@@ -19,7 +19,60 @@ if(window.name === 'zhipin'){
                 chrome.runtime.sendMessage(message)
             }
         }
-        setTimeout(func,1000)
+        setTimeout(login,1000)
+        
+        let job = function(){
+            if(document.querySelector('div.search-job-result') !== null){
+                let mutation = new MutationObserver(records=>{
+                    if(records[0].type === 'childList' && records[0].addedNodes[0].classList.contains('job-list-box')){
+                        setTimeout(()=>{
+                            let data = []
+                            for(let li of document.querySelectorAll('li.job-card-wrapper')){
+                                data.push({
+                                    jobname:li.querySelector('span.job-name').innerText,
+                                    salary:li.querySelector('span.salary').innerText,
+                                    tag:Array.from(li.querySelector('ul.tag-list').children,(v=>v.innerText)),
+                                    avatar:li.querySelector('img').src,
+                                    companyname:li.querySelector('h3.company-name').innerText,
+                                    industry:li.querySelector('ul.company-tag-list').firstElementChild.innerText,
+                                    financing:li.querySelector('ul.company-tag-list').children[1].innerText,
+                                    scale:li.querySelector('ul.company-tag-list').lastElementChild.innerText
+                                })
+                            }
+                            let message = {
+                                type: 'job',
+                                from: window.name,
+                                data: data
+                            }
+                            chrome.runtime.sendMessage(message)
+                        },1000)
+                    }
+                })
+                mutation.observe(document.querySelector('div.search-job-result'),{childList:true})
+
+                let data = []
+                for(let li of document.querySelectorAll('li.job-card-wrapper')){
+                    data.push({
+                        jobname:li.querySelector('span.job-name').innerText,
+                        salary:li.querySelector('span.salary').innerText,
+                        tag:Array.from(li.querySelector('ul.tag-list').children,(v=>v.innerText)),
+                        avatar:li.querySelector('img').src,
+                        companyname:li.querySelector('h3.company-name').innerText,
+                        industry:li.querySelector('ul.company-tag-list').firstElementChild.innerText,
+                        financing:li.querySelector('ul.company-tag-list').children[1].innerText,
+                        scale:li.querySelector('ul.company-tag-list').lastElementChild.innerText
+                    })
+                }
+                let message = {
+                    type: 'job',
+                    from: window.name,
+                    data: data
+                }
+                chrome.runtime.sendMessage(message)
+            }
+        }
+        this.setTimeout(job,1000)
+        
     })
     chrome.runtime.onMessage.addListener((message,sender,callback)=>{
         if(message.from !== 'home'){
@@ -37,7 +90,21 @@ if(window.name === 'zhipin'){
             }
             //如果不是搜索页，则触发Enter事件，等待内容刷新后通过callback获取。
             input.dispatchEvent(new KeyboardEvent('keydown',{keyCode:13,key:'Enter',code:'Enter',cancelable:true,bubbles:true}))
-            callback([input.value,'zhipin'])
+            let data = []
+            for(let item of getJobList()){
+                let arr = Array.from(document.getElementsByClassName('job-card-wrapper')[0].querySelectorAll('.job-name,.job-area,h3.company-name a,.salary,.salary ~ .tag-list li,.company-tag-list li,.job-card-footer .tag-list li,.info-desc'),v=>v.innerText)
+                data.push(arr)
+            }
+            console.log(data)
+            callback({type:'job',from:'zhipin',data})
         }
     })
+    /**
+     * 执行时机：
+
+
+     * 
+    */
+
+    
 }

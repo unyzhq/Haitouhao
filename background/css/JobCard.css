@@ -73,4 +73,6 @@
     height: 20px;
     background-color: #768079;
     margin: 0 3px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

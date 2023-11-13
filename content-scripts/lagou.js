@@ -37,7 +37,17 @@ if(/^lagou/.test(window.name)){
             }
             //如果不是搜索页，则触发Enter事件，等待内容刷新后通过callback获取。
             input.dispatchEvent(new KeyboardEvent('keydown',{keyCode:13,key:'Enter',code:'Enter',cancelable:true,bubbles:true}))
-            callback([input.value,'lagou'])
+            let data = []
+            for(let item of getJobList()){
+                let arr = item.innerText.split(/\s/)
+                arr.splice(1,0,'')
+                if(item.getElementsByTagName('img').length > 1){
+                    arr[1] = '校招'
+                }
+                data.push(arr)
+            }
+            console.log(data)
+            callback({type:'job',from:'lagou',data})
         }
     })
 }

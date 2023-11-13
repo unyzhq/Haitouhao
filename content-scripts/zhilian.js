@@ -36,7 +36,13 @@ if(window.name === 'zhaopin'){
                 button.click()
             }
             //智联招聘点击首页搜素按钮不会重定向，通过callback()传递信息即可。
-            callback([input.value,'zhilian'])
+            let data = []
+            for(let item of getJobList()){
+                let arr = item.innerText.split(/\s/)
+                data.push(arr)
+            }
+            console.log(data)
+            callback({type:'job',from:'zhilian',data})
         }
     })
 }

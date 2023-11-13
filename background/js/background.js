@@ -1,8 +1,10 @@
 import {createWebsiteCard} from "../component/WebsiteCard.js"
 import "../component/JobCard.js"
+import "./ListenerHandlers/job.js"
 import { session } from "./ListenerHandlers/storage.js"
 import { restore } from "./ListenerHandlers/website.js"
 import {Data} from "./util.js"
+import {handle} from './ListenerHandlers/job.js'
 window.addEventListener('load',()=>{
     document.addEventListener('click',function(event){
         let job = document.getElementById('SearchBar-job')
@@ -47,7 +49,7 @@ window.addEventListener('load',()=>{
         console.log(value)
         chrome.tabs.query({url:["https://www.liepin.com/*","https://c.liepin.com/*","https://www.zhipin.com/*","https://www.lagou.com/*","https://mkt.51job.com/*","https://we.51job.com/*","https://landing.zhaopin.com/*","https://xiaoyuan.zhaopin.com/*"]},function(tabs){
             for(let tab of tabs){
-                chrome.tabs.sendMessage(tab.id,message,function(data){console.log(data[0],data[1])})
+                chrome.tabs.sendMessage(tab.id,message,handle)
             }
         })
     })
@@ -58,11 +60,11 @@ window.addEventListener('load',()=>{
         }
     })
 
-    let jc = document.createElement("div",{is:"job-card"})
-    let content = document.getElementById('content')
-    for(let i = 0;i < 20;i++){
-        content.appendChild(jc.cloneNode(true))
-    }
+    // let jc = document.createElement("div",{is:"job-card"})
+    // let content = document.getElementById('content')
+    // for(let i = 0;i < 20;i++){
+    //     content.appendChild(jc.cloneNode(true))
+    // }
 
     let website = document.getElementById('website')
     website.appendChild(createWebsiteCard('Boss直聘','https://www.zhipin.com/web/user/?ka=header-login'))

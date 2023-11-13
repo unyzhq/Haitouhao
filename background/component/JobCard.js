@@ -25,6 +25,8 @@ class JobCard extends HTMLDivElement{
                 <span class="JobCard-industry">互联网</span>
                 <span>I</span>
                 <span class="JobCard-financing">不需要融资</span>
+                <span>I</span>
+                <span class="JobCard-scale">100-499人</span>
             </div>
         </div>`
         
@@ -35,6 +37,7 @@ class JobCard extends HTMLDivElement{
         this.jccompanyname = this.getElementsByClassName("JobCard-companyname")[0]
         this.jcindustry = this.getElementsByClassName("JobCard-industry")[0]
         this.jcfinancing = this.getElementsByClassName("JobCard-financing")[0]
+        this.jcscale = this.getElementsByClassName("JobCard-scale")[0]
     }
     clear(){
         this.jcjobname.innerHTML = ''
@@ -45,6 +48,23 @@ class JobCard extends HTMLDivElement{
         this.jcindustry.innerHTML = ''
         this.jcfinancing.innerHTML = ''
     }
+    setState(state){
+        this.jcjobname.innerText = state.jobname
+        this.jcsalary.innerText = state.salary
+        this.jctag.innerHTML = state.tag.reduce((p,c)=>`${p}\n<span>${c}</span>`,'')
+        this.jcavatar.style.setProperty('background-image',`url(${state.avatar})`)
+        this.jccompanyname.innerText = state.companyname
+        this.jcindustry.innerText = state.industry
+        this.jcfinancing.innerText = state.financing
+        this.jcscale.innerText = state.scale
+    }
 }
 
 customElements.define("job-card",JobCard,{extends:"div"})
+
+export function createJobCard(state){
+    let job = document.createElement('div',{is:'job-card'})
+    job.clear()
+    job.setState(state)
+    return job
+}
