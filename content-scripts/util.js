@@ -120,3 +120,16 @@ function getJobList(){
     list.push(last)
     return list
 }
+
+function observeJobList(selector,sendMessage){
+    let timmer = null
+    let mutation = new MutationObserver(records=>{
+        if(timmer === null){
+            timmer = setTimeout(sendMessage,1000)
+        }else{
+            clearTimeout(timmer)
+            timmer = setTimeout(sendMessage,1000)
+        }
+    })
+    mutation.observe(document.querySelector(selector),{subtree:true,childList:true,characterData:true})
+}

@@ -20,8 +20,31 @@ if(window.name === '51job'){
             }
         }
         setTimeout(func,1000)
+
+        let job = function(){
+            let sendMessage = function(){
+                let data = []
+                for(let item of getJobList()){
+                    let arr = Array.from(item.querySelectorAll('a,p[title]:not([data-v-61c80a42]),span:not([data-v-61c80a42])'),v=>v.innerText)
+                    if(!/\d/.test(arr[1])){
+                        arr.splice(1,0,'薪资面议')
+                    }
+                    if(['大专','本科','硕士','博士'].indexOf(arr[5]) === -1){
+                        arr.splice(5,0,'')
+                    }
+                    if(!/\d/.test(arr[9])){
+                        arr.splice(9,0,'')
+                    }
+                    data.push(arr)
+                }
+                chrome.runtime.sendMessage({type:'job',from:'51job',data})
+            }
+            observeJobList('div.job-list',sendMessage)
+            sendMessage()
+        }
+        setTimeout(job,1000)
     })
-    chrome.runtime.onMessage.addListener((message,sender,callback)=>{
+    chrome.runtime.onMessage.addListener((message)=>{
         if(message.from !== 'home'){
             return
         }
@@ -30,27 +53,7 @@ if(window.name === '51job'){
 
             input.value = message.data.search
             input.dispatchEvent(new Event('input',{bubbles:true,cancelable:true}))
-
-            let button = document.querySelector('button#search_btn')
-            if(button !== null){
-                button.click()
-            }
-            let data = []
-            for(let item of getJobList()){
-                let arr = Array.from(item.querySelectorAll('a,p[title]:not([data-v-61c80a42]),span:not([data-v-61c80a42])'),v=>v.innerText)
-                if(!/\d/.test(arr[1])){
-                    arr.splice(1,0,'薪资面议')
-                }
-                if(['大专','本科','硕士','博士'].indexOf(arr[5]) === -1){
-                    arr.splice(5,0,'')
-                }
-                if(!/\d/.test(arr[9])){
-                    arr.splice(9,0,'')
-                }
-                data.push(arr)
-            }
-            console.log(data)
-            callback({type:'job',from:'51job',data})
+            document.getElementById('search_btn')?.click()
         }
     })
 }

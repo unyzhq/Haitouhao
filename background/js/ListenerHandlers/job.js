@@ -3,10 +3,12 @@ import { createLP } from "../../component/LP.js"
 import { createWY } from "../../component/WY.js"
 import { createZL } from "../../component/ZL.js"
 import { createZP } from "../../component/ZP.js"
-export function handle(message){
+function createJob(message){
     if(message.type !== 'job'){
         return
     }
+    console.log('from : ',message.from)
+    console.log('data : ',message.data)
     let content = document.getElementById('content')
     for(let texts of message.data){
         if(message.from === 'lagou'){
@@ -26,3 +28,11 @@ export function handle(message){
         }
     }
 }
+
+
+chrome.runtime.onMessage.addListener(function(message){
+    if(message.type !== 'job'){
+        return
+    }
+    createJob(message)
+})

@@ -28,7 +28,8 @@
             }
         }
         #content{
-            min-width: 750px;
+            min-width: 700px;
+            max-width: 700px;
             min-height: 100vh;
             padding: 15px 30px;
             border-radius: 1em;
@@ -64,12 +65,12 @@
         .zhilian-block-1 span{
             color: rgb(23, 135, 251);
         }
-        .zhilian-block-2 > div:first-child > span:nth-child(n + 2):not(:last-child)::after{
-            content: ' I ';
+        .zhilian-block-2 > div:first-child > span:nth-child(n + 2){
+            margin-right: 5px
         }
-        .zhilian-block-2 > div:last-child > span:not(:last-child)::after{
+        /*.zhilian-block-2 > div:last-child > span:not(:last-child)::after{
             content: ' I ';
-        }
+        } */
         .zhilian-block-2 > div:first-child span:first-child{
             color: rgb(253, 95, 57);
             margin-right: 10px;
@@ -121,6 +122,7 @@
             border-radius: 5px;
             padding: 0 3px;
             border: 2px solid rgba(111,111,111,0.4);
+            margin-right: 3px;
         }
         .lagou-block-3 div{
             color: rgb(111,111,111);
@@ -177,6 +179,41 @@
             color: rgb(111,111,111);
             font-size: small;
             transform: translateY(3px);
+        }
+    </style>
+    <style type="text/css" zhipin>
+        .zhipin-block-1,.zhipin-block-2,.zhipin-block-3{
+            display: flex;
+            justify-content: space-between;
+        }
+        .zhipin-block-1{
+            color: #00a6a7;
+        }
+        .zhipin-block-2 div:first-child span:first-child{
+            color: rgb(253, 95, 57);
+            margin-right: 10px;
+        }
+        .zhipin-block-2 div:first-child span:not(:first-child),.zhipin-block-2 div:last-child span{
+            font-size: small;
+            color: rgb(111,111,111);
+            background-color: rgba(100, 100, 100, 0.1);
+            padding: 0 3px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        .zhipin-block-3{
+            font-size: small;
+            color: rgb(111,111,111);
+        }
+        .zhipin-block-3 span{
+            margin-right: 5px;
+        }
+        .zhipin-block-3 div:last-child span{
+            display: block;
+            max-width: 350px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow:ellipsis;
         }
     </style>
     <div id="content">
@@ -2347,41 +2384,6 @@
                 <span>1000-2000人</span>
             </div>
         </div>
-        <style type="text/css">
-            .zhipin-block-1,.zhipin-block-2,.zhipin-block-3{
-                display: flex;
-                justify-content: space-between;
-            }
-            .zhipin-block-1{
-                color: #00a6a7;
-            }
-            .zhipin-block-2 div:first-child span:first-child{
-                color: rgb(253, 95, 57);
-                margin-right: 10px;
-            }
-            .zhipin-block-2 div:first-child span:not(:first-child),.zhipin-block-2 div:last-child span{
-                font-size: small;
-                color: rgb(111,111,111);
-                background-color: rgba(100, 100, 100, 0.1);
-                padding: 0 3px;
-                border-radius: 4px;
-                margin-right: 5px;
-            }
-            .zhipin-block-3{
-                font-size: small;
-                color: rgb(111,111,111);
-            }
-            .zhipin-block-3 span{
-                margin-right: 5px;
-            }
-            .zhipin-block-3 div:last-child span{
-                display: block;
-                max-width: 350px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow:ellipsis;
-            }
-        </style>
         <div class="zhipin">
             <div class="zhipin-block-1">
                 <div class="list">

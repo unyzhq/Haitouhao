@@ -20,8 +20,23 @@ if(window.name === 'zhaopin'){
             }
         }
         setTimeout(func,1000)
+
+        let job = function(){
+            let sendMessage = function(){
+                let data = []
+                for(let item of getJobList()){
+                    let arr = item.innerText.split(/\s/)
+                    data.push(arr)
+                }
+                chrome.runtime.sendMessage({type:'job',from:'zhilian',data})
+            }
+            observeJobList('div.el-tabs__content',sendMessage)
+            sendMessage()
+        }
+        setTimeout(job,1000)
+
     })
-    chrome.runtime.onMessage.addListener((message,sender,callback)=>{
+    chrome.runtime.onMessage.addListener((message)=>{
         if(message.from !== 'home'){
             return
         }
@@ -30,19 +45,7 @@ if(window.name === 'zhaopin'){
 
             input.value = message.data.search
             input.dispatchEvent(new Event('input',{bubbles:true,cancelable:true}))
-
-            let button = document.querySelector('span.search_btn')
-            if(button !== null){
-                button.click()
-            }
-            //智联招聘点击首页搜素按钮不会重定向，通过callback()传递信息即可。
-            let data = []
-            for(let item of getJobList()){
-                let arr = item.innerText.split(/\s/)
-                data.push(arr)
-            }
-            console.log(data)
-            callback({type:'job',from:'zhilian',data})
+            document.querySelector('span.search_btn')?.click()
         }
     })
 }

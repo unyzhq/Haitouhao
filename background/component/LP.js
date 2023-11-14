@@ -29,7 +29,7 @@ class LP extends HTMLDivElement{
                 lists[0].appendChild(span.cloneNode(true))
                 continue
             }
-            if(i > 1 && i < texts.indexOf('')){
+            if(i > 1 && i < texts.indexOf('') && i < 10){
                 lists[1].appendChild(span.cloneNode(true))
             }
             if(i > texts.indexOf('')){

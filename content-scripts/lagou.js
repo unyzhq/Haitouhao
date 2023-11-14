@@ -20,8 +20,33 @@ if(/^lagou/.test(window.name)){
             }
         }
         setTimeout(func,1000)
+
+        let job = function(){//拉钩会重定向，因此不需要监听元素。
+            let data = []
+            for(let item of document.getElementsByClassName('item__10RTO')){
+                let arr_ = Array.from(item.querySelectorAll('div.position__21iOS a,div.company__2EsC8 a,div.p-bom__JlNur,div.industry__1HBkr,div.ir___QwEG span'),v=>{
+                    if(/\dk/.test(v.innerText)){
+                        let index = v.innerText.lastIndexOf('k') + 1
+                        let str = v.innerText.slice(0,index) + ' ' + v.innerText.slice(index)
+                        return str.split(/\s/)
+                    }
+                    return v.innerText.split(/\s/)
+                })
+                let arr = []
+                for(let i = 0;i < arr_.length;i++){
+                    arr.push(...arr_[i])
+                }
+                arr.splice(1,0,'')
+                if(item.querySelector('[src="https://lagou-zhaopin-fe.lagou.com/fed/lg-www-fed/position/pc/xiaozhao.png"]')!==null){
+                    arr[1] = '校招'
+                }
+                data.push(arr)
+            }
+            chrome.runtime.sendMessage({type:'job',from:'lagou',data})
+        }
+        setTimeout(job,1000)
     })
-    chrome.runtime.onMessage.addListener((message,sender,callback)=>{
+    chrome.runtime.onMessage.addListener((message)=>{
         if(message.from !== 'home'){
             return
         }
@@ -30,24 +55,7 @@ if(/^lagou/.test(window.name)){
 
             input.value = message.data.search
             input.dispatchEvent(new Event('input',{bubbles:true,cancelable:true}))
-
-            let button = document.querySelector('input#search_button')
-            if(button !== null){//如果是首页，则点击按钮，招聘信息通过onload中的逻辑获取。
-                button.click()
-            }
-            //如果不是搜索页，则触发Enter事件，等待内容刷新后通过callback获取。
             input.dispatchEvent(new KeyboardEvent('keydown',{keyCode:13,key:'Enter',code:'Enter',cancelable:true,bubbles:true}))
-            let data = []
-            for(let item of getJobList()){
-                let arr = item.innerText.split(/\s/)
-                arr.splice(1,0,'')
-                if(item.getElementsByTagName('img').length > 1){
-                    arr[1] = '校招'
-                }
-                data.push(arr)
-            }
-            console.log(data)
-            callback({type:'job',from:'lagou',data})
         }
     })
 }
