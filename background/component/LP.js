@@ -12,15 +12,6 @@ class LP extends HTMLDivElement{
         </div>`
     }
     init(texts){
-        /*
-        let arr = Array.from(document.querySelectorAll('[style="margin-bottom: 10px;"]')[0].querySelectorAll('div[title],div.job-dq-box span,span.job-salary,div.job-labels-box span,img.company-logo-white-bg,span.company-name,div.company-tags-box span'),(v=>{
-            if(v.nodeName === 'img'){
-                return ''
-            }
-            return v.innerText
-        }))
-        arr.splice(0,4, arr[0] + '【' + arr[2] + '】')
-        */
         let span = document.createElement('span')
         let lists = this.getElementsByClassName('list')
         for(let i = 0;i < texts.length;i++){

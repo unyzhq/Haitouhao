@@ -59,7 +59,7 @@ export function createWebsiteCard(/*标题，网址*/){
         el.clear()
         el.wctitle.innerHTML = arguments[0]
         el.wcbutton.addEventListener('click',()=>{
-            let reg = /(?<=\.)\w+(?=\.)/g
+            let reg = /(?<=\.)\w+(?=\.)/
             window.open(arguments[1],reg.exec(arguments[1])[0])
         })
         return el

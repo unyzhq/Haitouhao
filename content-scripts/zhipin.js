@@ -34,69 +34,38 @@ if(window.name === 'zhipin'){
             sendMessage()
         }
         setTimeout(job,1000)
-        // let job = function(){
-        //     if(document.querySelector('div.search-job-result') !== null){
-        //         let mutation = new MutationObserver(records=>{
-        //             if(records[0].type === 'childList' && records[0].addedNodes[0].classList.contains('job-list-box')){
-        //                 setTimeout(()=>{
-        //                     let data = []
-        //                     for(let li of document.querySelectorAll('li.job-card-wrapper')){
-        //                         data.push({
-        //                             jobname:li.querySelector('span.job-name').innerText,
-        //                             salary:li.querySelector('span.salary').innerText,
-        //                             tag:Array.from(li.querySelector('ul.tag-list').children,(v=>v.innerText)),
-        //                             avatar:li.querySelector('img').src,
-        //                             companyname:li.querySelector('h3.company-name').innerText,
-        //                             industry:li.querySelector('ul.company-tag-list').firstElementChild.innerText,
-        //                             financing:li.querySelector('ul.company-tag-list').children[1].innerText,
-        //                             scale:li.querySelector('ul.company-tag-list').lastElementChild.innerText
-        //                         })
-        //                     }
-        //                     let message = {
-        //                         type: 'job',
-        //                         from: window.name,
-        //                         data: data
-        //                     }
-        //                     chrome.runtime.sendMessage(message)
-        //                 },1000)
-        //             }
-        //         })
-        //         mutation.observe(document.querySelector('div.search-job-result'),{childList:true})
-
-        //         let data = []
-        //         for(let li of document.querySelectorAll('li.job-card-wrapper')){
-        //             data.push({
-        //                 jobname:li.querySelector('span.job-name').innerText,
-        //                 salary:li.querySelector('span.salary').innerText,
-        //                 tag:Array.from(li.querySelector('ul.tag-list').children,(v=>v.innerText)),
-        //                 avatar:li.querySelector('img').src,
-        //                 companyname:li.querySelector('h3.company-name').innerText,
-        //                 industry:li.querySelector('ul.company-tag-list').firstElementChild.innerText,
-        //                 financing:li.querySelector('ul.company-tag-list').children[1].innerText,
-        //                 scale:li.querySelector('ul.company-tag-list').lastElementChild.innerText
-        //             })
-        //         }
-        //         let message = {
-        //             type: 'job',
-        //             from: window.name,
-        //             data: data
-        //         }
-        //         chrome.runtime.sendMessage(message)
-        //     }
-        // }
-        // this.setTimeout(job,1000)
         
     })
     chrome.runtime.onMessage.addListener((message)=>{
         if(message.from !== 'home'){
             return
         }
-        if(message.type = 'search'){
+        if(message.type === 'search'){
             let input = document.querySelector('input[name="query"].ipt-search') || document.querySelector('input[placeholder].input')
 
             input.value = message.data.search
             input.dispatchEvent(new Event('input',{bubbles:true,cancelable:true}))
             input.dispatchEvent(new KeyboardEvent('keydown',{keyCode:13,key:'Enter',code:'Enter',cancelable:true,bubbles:true}))
         }
-    })    
+    })
+    chrome.runtime.onMessage.addListener((message)=>{
+        if(message.from !== 'home'){
+            return
+        }
+        if(message.type === 'job' && message.data?.click?.target === 'zhipin'){
+            let mutation = new MutationObserver((records,mutation)=>{
+                let arr = Array.from(records[0].addedNodes[0].querySelectorAll('.header-info .title,.intro,.desc'),v=>{
+                    if(/·/.test(v.innerText)){
+                        return v.innerText.slice(0,v.innerText.indexOf('·'))
+                    }
+                    return v.innerText
+                })
+                chrome.runtime.sendMessage({type:'desc',from:'zhipin',data:arr})
+                mutation.disconnect()
+                document.getElementsByClassName('job-title')[Number(message.data.click.index)].dispatchEvent(new MouseEvent('mouseleave'))
+            })
+            mutation.observe(document.getElementsByClassName('job-card-left')[Number(message.data.click.index)],{childList:true})
+            document.getElementsByClassName('job-title')[Number(message.data.click.index)].dispatchEvent(new MouseEvent('mouseenter'))
+        }
+    })
 }

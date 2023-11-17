@@ -1,5 +1,6 @@
 let search = ''
-let types = {search}
+let click = {target:'',index:''}
+let types = {search,click}
 //简易的类型检查函数。
 function Data(type,data){
     let t

@@ -24,8 +24,6 @@ class LG extends HTMLDivElement{
         </div>`
     }
     init(texts){
-        /*为了逻辑更加简单，获得数组后在[1]插入''，若属于校招则将''改为'校招'*/
-        /*通过判断元素是否包含两个img元素来判断是否为校招*/
         let span = document.createElement('span')
         let lists = this.getElementsByClassName('list')
         for(let i = 0;i < texts.length;i++){

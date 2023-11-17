@@ -14,8 +14,7 @@
 }
 #detail{
     overflow-y: scroll;
-    max-height: 53.15vh;
-    min-height: 400px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

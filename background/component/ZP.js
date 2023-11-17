@@ -24,9 +24,6 @@ class ZP extends HTMLDivElement{
         </div>`
     }
     init(texts){
-        /*
-        Array.from(document.getElementsByClassName('job-card-wrapper')[0].querySelectorAll('.job-name,.job-area,h3.company-name a,.salary,.salary ~ .tag-list li,.company-tag-list li,.job-card-footer .tag-list li,.info-desc'),v=>v.innerText)
-         */
         let span = document.createElement('span')
         let lists = this.getElementsByClassName('list')
         for(let i = 0;i < texts.length;i++){

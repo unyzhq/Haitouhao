@@ -52,6 +52,7 @@
             padding: 10px;
             border-radius: 0.5em;
             margin: 15px 0;
+            cursor: pointer;
         }
         .zhilian,.lagou,.wyjob,.liepin,.zhipin > div:not(:last-child){
             margin-bottom: 3px;
@@ -2425,7 +2426,92 @@
 
         </div>
         <div>
-            <div id="detail">
+            <style>
+                #detail-empty-block > div:not(:first-child) h4{
+                    color: rgb(62, 64, 66);
+                    margin: 0;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    max-width: 350px;
+                }
+                #detail-empty-block > div:not(:first-child) button{
+                    font-size: medium;
+                    font-weight: 600;
+                    border: none;
+                    outline: none;
+                    color: white;
+                    background-color: rgb(116, 184, 248);
+                    margin: 0 15px;
+                    cursor: pointer;
+                    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+                    transition: all 0.2s;
+                    border-radius: 3px;
+                }
+                #detail-empty-block > div:not(:first-child) button:active{
+                    box-shadow: none;
+                    background-color: transparent;
+                }
+                #detail-empty-block > div:not(:first-child) button[ban]{
+                    cursor: not-allowed;
+                }
+                #desc_{
+                    height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    overflow-y: scroll;
+                }
+                #desc_::-webkit-scrollbar{
+                    background-color: rgba(255,255,255,0);
+                }
+                #desc_::-webkit-scrollbar-thumb{
+                    background-color: rgba(255,255,255,0.4);
+                    border-radius: 25px;
+                }
+                #desc_-block-1{
+                    display: flex;
+                    justify-content: space-between;
+                    padding-right: 30px;
+                    font-size: larger;
+                    font-weight: bolder;
+                }
+                #desc_-block-2{
+                    display: flex;
+                    flex-direction: column;
+                    padding-right: 20px;
+                }
+            </style>
+            <div id="desc_">
+                <div id="desc_-block-1">
+                    <h4 class="list">Android系统专家</h4>
+                    <div>
+                        <button>聊一聊</button>
+                        <button ban>投简历</button>
+                    </div>
+                </div>
+                <div id="desc_-block-2">
+                    <div style="display: flex;">
+                        <h4 class="list">品高PPG</h4>
+                        <h4 class="list" style="margin-left: 20px;">5k-8k</h4>
+                    </div>
+                    <div>
+                        <span class="list">深圳</span><br>
+                        <span>职位描述：</span>
+                        <p class="list" style="white-space: pre-wrap;margin-top:5px;">1.负责Android Framework功能开发和维护；
+2.负责系统功能与业务开发；
+3.负责Android系统功能优化；
+4.负责Android系统跨平台移植工作；
+5.负责研究和跟进Android版本升级；
+负责解决各类系统问题，例如各类crash，重启，ANR，系统卡顿，第三方应用等各类疑难问题；
+岗位要求：
+1.本科以上学历；
+2.同时熟悉C/C++语言和java语言；
+3.精通Android framework的相关开发；
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="detail">
                 <div id="detail-top">
                     <div>
                         <div>
@@ -2481,8 +2567,8 @@
                         </ol>
                     </div>
                 </div>
-            </div>
-            <div id="chatbox">
+            </div> -->
+            <!-- <div id="chatbox">
                 <div id="chatbox-menu">
                     <div>
                         <input placeholder="搜索">
@@ -2518,7 +2604,7 @@
                         <span></span>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>

@@ -40,7 +40,7 @@ if(window.name === 'zhaopin'){
         if(message.from !== 'home'){
             return
         }
-        if(message.type = 'search'){
+        if(message.type === 'search'){
             let input = document.querySelector('input#search_input_one')
 
             input.value = message.data.search
@@ -48,4 +48,37 @@ if(window.name === 'zhaopin'){
             document.querySelector('span.search_btn')?.click()
         }
     })
+    chrome.runtime.onMessage.addListener((message)=>{
+        if(message.from !== 'home'){
+            return
+        }
+        if(message.type === 'job' && message.data?.click?.target === 'zhilian'){
+            getJobList()[message.data.click.index].querySelector('div[class="fn-left position"]').click()
+        }
+    })
+}else if(/^https:\/\/xiaoyuan.zhaopin.com\//.test(window.location.href)){
+    window.addEventListener('load',function(){
+        let func = function(){
+            let message = {
+                type:'desc',
+                from:'zhilian',
+                data:Array.from(document.querySelectorAll('span[class="name"] span,p[class="company-name"] span,span[class="address"] span,div[class="describe"]'),v=>v.innerText)
+            }
+            chrome.runtime.sendMessage(message)
+        }
+        setTimeout(func,1000)
+    })
+    window.__close__ = Symbol()
+    chrome.runtime.onMessage.addListener((message)=>{
+        if(message.from !== 'home'){
+            return
+        }
+        if(message.type === 'close' && window.__close__){
+            window.close()
+        }
+    })
 }
+/*
+Array.from(document.querySelectorAll('span[class="name"] span,p[class="company-name"] span,span[class="address"] span,div[class="describe"]'),v=>v.innerText)
+(5) ['Web开发工程师', '深圳市天软科技开发有限公司', '上海', '-浦东新区', '岗位职责：\n1. 根据产品及运营需求进行软件设计；\n2. 设计开发数据库脚本、编写web后端代码；\n…欢迎应届生。\n\n\n职位福利：五险一金、年底双薪、带薪年假、弹性工作、定期体检、节日福利、周末双休\n']
+*/
