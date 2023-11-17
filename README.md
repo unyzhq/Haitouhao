@@ -1,7 +1,5 @@
-# Strategic-Mass-Application-Partner
-Toy project, a expansion for Edge.
-
-这是一个浏览器拓展(仅Edge)，用于将多个招聘网站的招聘信息聚合到一个页面中，方便求职者海投。
+# 直猎BOSS拉钩无忧智联战舰
+一个浏览器拓展(仅Edge)，用于将多个招聘网站的招聘信息聚合到一个页面中，方便求职者海投。
 
 # 开发
 使用纯html、css、JavaScript和浏览器拓展方法开发。
